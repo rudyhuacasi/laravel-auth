@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')
+Route::middleware('guest')
     ->group(function(){
     Route::get('public', [GuestProjectController::class, 'index'])->name('guest.project.index');
 });
