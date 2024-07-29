@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\category;
 use Illuminate\Support\Str;
 
 
@@ -25,7 +26,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories= category::all();
+        return view('admin.projects.create', compact('categories'));
 
     }
 
@@ -45,6 +47,7 @@ class ProjectController extends Controller
         $project->title = $data['title'];
         $project->content = $data['content'];
         $project->slug = $data['slug'];
+        $project->category_id = $data['category_id'];
 
         $project->save();
 
